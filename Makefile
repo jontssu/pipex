@@ -8,7 +8,7 @@ SRC = pipex.c split_quotes.c get_path.c make_fd.c parent_n_child.c
 
 OSRC = $(SRC:%.c=%.o)
 
-BSRC = pipex_bonus.c split_quote.c get_path.c make_fd.c parent_n_child.c
+BSRC = pipex_bonus.c split_quotes.c get_path.c make_fd.c parent_n_child.c
 
 BOSRC = $(BSRC:%.c=%.o)
 
@@ -37,7 +37,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: %(BONUS_NAME)
+bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BOSRC)
 	make -C libft
