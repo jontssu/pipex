@@ -6,7 +6,7 @@
 /*   By: jole <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:05:20 by jole              #+#    #+#             */
-/*   Updated: 2023/02/09 16:50:23 by jole             ###   ########.fr       */
+/*   Updated: 2023/02/13 15:20:23 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
-typedef	struct	s_vars
+typedef struct s_vars
 {
 	int	new[2];
 	int	fd_in;

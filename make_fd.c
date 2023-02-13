@@ -6,7 +6,7 @@
 /*   By: jole <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:40:26 by jole              #+#    #+#             */
-/*   Updated: 2023/02/09 16:50:58 by jole             ###   ########.fr       */
+/*   Updated: 2023/02/13 15:19:55 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ void	dup_fds(t_vars *vars, int fd1, int fd2)
 	if (vars->fd_out == -1)
 		free_perror(vars->pids);
 	if (close(fd2) == -1)
-		free_perror(vars->pids);	
+		free_perror(vars->pids);
 }
 
 void	first_command(t_vars *vars, char *file, int old0, int old1)
 {
 	int	file1;
+
 	file1 = open(file, O_RDONLY);
 	if (file1 == -1)
 	{
@@ -62,7 +63,7 @@ void	make_fd(int commands, t_vars *vars, int *old, char **argv)
 	if (vars->count == 1)
 		first_command(vars, argv[vars->count], old0, old1);
 	else if (vars->count < commands)
-			dup_fds(vars, old0, vars->new[1]);
+		dup_fds(vars, old0, vars->new[1]);
 	else
 	{
 		file2 = open(argv[commands + 2], O_WRONLY | O_CREAT | O_TRUNC, 0644);

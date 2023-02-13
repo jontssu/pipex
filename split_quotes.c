@@ -6,7 +6,7 @@
 /*   By: jole <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 16:48:35 by jole              #+#    #+#             */
-/*   Updated: 2023/02/09 16:49:54 by jole             ###   ########.fr       */
+/*   Updated: 2023/02/13 15:23:57 by jole             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,27 @@ char	*strlen_delim(char *str, int *full_len, int delim)
 	return (str);
 }
 
-int	calc_words(char *str, int *len, int delim)
+int	calc_words(char *str, int *full_len, int delim)
 {
-	int		i;
 	int		words;
-	int		old_delim;
+	int		quote;
 
-	i = 0;
-	*len = 0;
+	*full_len = 0;
 	words = 0;
-	old_delim = delim;
-	while (str[i] != 0)
+	while (*str)
 	{
-		while (str[i] == delim)
-			i++;
-		if (str[i] == '\"' || str[i] == '\'')
-		{
-			delim = str[i];
-			i++;
-		}
-		if (str[i] != 0)
+		while (*str == delim)
+			str++;
+		if (*str)
 			words++;
-		while (str[i] != delim && str[i] != 0)
+		if (*str == '\"' || *str == '\'')
 		{
-			i++;
-			(*len)++;
+			quote = *str;
+			str++;
+			str = strlen_delim(str, full_len, quote);
 		}
-		if (delim == '\"' || delim == '\'')
-		{
-			delim = old_delim;
-			i++;
-		}
+		else
+			str = strlen_delim(str, full_len, delim);
 	}
 	return (words);
 }
